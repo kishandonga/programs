@@ -1,0 +1,438 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+
+    <!-- and it's easy to individually load additional languages -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/dart.min.js"></script>
+
+    <script>hljs.highlightAll();</script>
+
+    <style>
+      code{
+        font-family: "Courier New", "Lucida Console", monospace;
+        font-size: 16;
+      }
+    </style>
+</head>
+
+<body>
+
+<h4></h4>
+<pre>
+<code class="language-dart">
+...
+</code>
+</pre>
+
+<h4>Count the occurrences of a character in a string: Write a function that takes a string and a character as input and returns the number of times the character appears in the string. For example, if the input is "hello", "l" the output should be 2.</h4>
+<pre>
+<code class="language-dart">
+void main(){
+  String input = &apos;hello&apos;;
+  List&lt;String&gt; inputChars = input.split(&apos;&apos;);
+  List&lt;String&gt; output = [];
+  
+  for(String char in inputChars.toSet()){
+    output.add(&apos;$char : ${inputChars.where((it) =&gt; it == char).toList().length}&apos;);
+  }
+  
+  print(output);
+}
+
+Output:
+
+[h : 1, e : 1, l : 2, o : 1]
+</code>
+</pre>
+
+<h4>Check for Prime Number: Write a function that takes a number as input and checks if it is a prime number. A prime number is a number that is only divisible by 1 and itself. For example, if the input is 7, the output should be true.</h4>
+<pre>
+<code class="language-dart">
+import &apos;dart:math&apos;;
+
+void main() {
+  int num = 7;
+
+  bool isPrime = true;
+
+  if (num &lt;= 1) {
+    isPrime = false;
+  } else {
+    for (int i = 2; i &lt;= sqrt(num); i++) {
+      if (num % i == 0) {
+        isPrime = false;
+        break;
+      }
+    }
+  }
+
+  if (isPrime) {
+    print(&apos;$num is a prime number.&apos;);
+  } else {
+    print(&apos;$num is not a prime number.&apos;);
+  }
+}
+
+Output:
+
+7 is a prime number.
+</code>
+</pre>
+
+<h4>Find the longest word: Write a function that takes a sentence as input and returns the longest word in the sentence. For example, if the input is "The quick brown fox jumps over the lazy dog", the output should be "jumps".</h4>
+<pre>
+<code class="language-dart">
+void main() {
+  String sentence = &apos;The quick brown fox jumps over the lazy dog&apos;;
+  List&lt;String&gt; words = sentence.split(&apos; &apos;);
+  print(longest(words));
+}
+
+String longest(List&lt;String&gt; values) {
+  return values.reduce((a, b) {
+    return a.length &gt; b.length ? a : b;
+  });
+}
+
+Output:
+
+jumps
+</code>
+</pre>
+
+<h4>Check for Anagrams: Write a function that takes two strings as input and checks if they are anagrams. Anagrams are two words or phrases that use the same letters in a different order. For example, if the inputs are "listen" and "silent", the output should be true.</h4>
+<pre>
+<code class="language-dart">
+void main() {
+  print(&apos;Is `listen` and `silent` are anagram? : ${isAnagram(&apos;listen&apos;, &apos;silent&apos;)}&apos;);
+  print(&apos;Is `compute` and `desktop` are anagram? : ${isAnagram(&apos;compute&apos;, &apos;desktop&apos;)}&apos;);
+}
+
+isAnagram(String first, String second) {
+  if (first.length != second.length) {
+    return false;
+  }
+
+  List&lt;String&gt; s1List = first.split(&apos;&apos;)..sort();
+  String s1 = s1List.join();
+
+  List&lt;String&gt; s2List = second.split(&apos;&apos;)..sort();
+  String s2 = s2List.join();
+
+  if (s1 == s2) {
+    return true;
+  }
+
+  return false;
+}
+
+Output:
+
+Is `listen` and `silent` are anagram? : true
+Is `compute` and `desktop` are anagram? : false
+</code>
+</pre>
+
+<h4>Remove duplicates from an array: Write a function that takes an array as input and returns a new array with duplicate elements removed. For example, if the input is [1, 2, 2, 3, 4, 4, 5], the output should be [1, 2, 3, 4, 5].</h4>
+
+<pre>
+<code class="language-dart">
+void main(List &lt;String&gt; args){
+    List&lt;int&gt; arr = [1, 2, 2, 2, 3, 4, 5, 5];
+    print(arr.toSet().toList());
+}
+
+Output:
+
+[1, 2, 3, 4, 5]
+</code>
+</pre>
+
+<pre>
+<code class="language-dart">
+void main() {
+  final arr = [1, 2, 2, 3, 4, 4, 5];
+  print(removeDuplicates(arr));
+}
+
+List&lt;int&gt; removeDuplicates(List&lt;int&gt; arr) {
+  int length = arr.length;
+  List&lt;int&gt; output = [];
+  if (length == 0 || length == 1) {
+    return arr;
+  }
+
+  // Doing same as done in Method 1
+  // Just maintaining another updated index i.e. j
+  for (int i = 0; i &lt; length - 1; i++) {
+    if (arr[i] != arr[i + 1]) {
+      output.add(arr[i]);
+    }
+  }
+  output.add(arr[length - 1]);
+  
+  return output;
+}
+</code>
+</pre>
+
+<h4>Find the missing number: Given an array of numbers from 1 to N, where one number is missing, write a function to find the missing number. For example, if the input is [1, 2, 4, 5, 6], the output should be 3.</h4>
+<pre>
+<code class="language-dart">
+import &quot;dart:math&quot;;
+
+void main() {
+  var a = [1, 2, 4, 5, 6];
+  int n = a.reduce(max);
+  var sum = n * (n + 1) / 2;
+  var sumOfArray = a.reduce((a, b) =&gt; a + b);
+  print(sum - sumOfArray); // 3
+}
+</code>
+</pre>
+
+<h4>FizzBuzz: Write a program that prints the numbers from 1 to 100. But for multiples of three, print "Fizz" instead of the number, and for the multiples of five, print "Buzz". For numbers that are multiples of both three and five, print "FizzBuzz".</h4>
+<pre>
+<code class="language-dart">
+fizzBuzz(int turn) {
+  if (turn % 3 == 0 &amp;&amp; turn % 5 == 0){
+    return &apos;izzBuzz&apos;;    
+  } else if (turn % 3 == 0) {
+    return &apos;Fizz&apos;;
+  } else if (turn % 5 == 0) {
+    return &apos;Buzz&apos;;
+  } else {
+    return turn.toString();
+  }
+}
+
+main() {
+  for (int i = 1; i &lt;= 100; i++){
+    print(fizzBuzz(i));
+  }
+}
+</code>
+</pre>
+
+<h4>Check is palindrome number or not</h4>
+<pre>
+<code class="language-dart">
+void main() {
+  isPalindromeNum(54545);
+}
+
+isPalindromeNum(int number) {
+  int reminder, sum = 0, temp;
+  temp = number;
+
+  // a loop to reverse a number
+  while (number &gt; 0) {
+    reminder = number % 10; //get remainder
+    sum = (sum * 10) + reminder;
+    number = number ~/ 10;
+  }
+
+  if (sum == temp) {
+    print(&apos;Its A Palindrome number&apos;);
+  } else {
+    print(&apos;Its A Not Palindrome number&apos;);
+  }
+}
+</code>
+</pre>
+
+<h4>Takes an array of numbers as input and returns the largest number dart</h4>
+<pre>
+<code class="language-dart">
+import &apos;dart:math&apos;;
+
+void main(){
+  var arrayInt = [3, 8, 2, 10, 5];
+  
+  print(usingFor(arrayInt));
+  print(usingSort1(arrayInt));
+  print(usingSort2(arrayInt));
+  print(usingReduce(arrayInt));
+  print(usingFold(arrayInt));
+}
+
+int usingFor(List&lt;int&gt; arrayInt){
+  var largestValue = arrayInt[0];
+  
+  for (var i = 0; i &lt; arrayInt.length; i++) {
+      
+    if (arrayInt[i] &gt; largestValue) {
+      largestValue = arrayInt[i];
+    }
+  }
+  
+  return largestValue;
+}
+
+int usingSort1(List&lt;int&gt; arrayInt){
+  arrayInt.sort((a, b) =&gt; a &gt; b ? -1 : 1);
+  return arrayInt.first;
+}
+
+int usingSort2(List&lt;int&gt; arrayInt){
+  arrayInt.sort();
+  return arrayInt.last;
+}
+
+int usingReduce(List&lt;int&gt; arrayInt){
+  return arrayInt.reduce((current, next) =&gt; current &gt; next ? current : next);
+}
+
+int usingFold(List&lt;int&gt; arrayInt){
+  return arrayInt.fold(arrayInt[0], max);
+}
+</code>
+</pre>
+
+<h4>String as input and returns the string in reverse order in dart</h4>
+<pre>
+<code class="language-dart">
+void main() {
+  var value = &apos;Hello, World!&apos;;
+
+  print(usingAlgo(value));
+  print(usingSplit(value));
+  print(usingRunes(value));
+  print(usingCodeUnits(value));
+}
+
+String usingAlgo(String input) {
+  String reverseStr = &apos;&apos;;
+  for (int i = 0; i &lt; input.length; i++) {
+    reverseStr = input[i] + reverseStr;
+  }
+  return reverseStr;
+}
+
+String usingSplit(String input) {
+  var chars = input.split(&apos;&apos;);
+  return chars.reversed.join();
+}
+
+String usingRunes(String input) {
+  var chars = input.runes.toList();
+
+  return String.fromCharCodes(chars.reversed);
+}
+
+String usingCodeUnits(String input) {
+  return String.fromCharCodes(input.codeUnits.reversed);
+}
+</code>
+</pre>
+
+<h4>typedef in dart</h4>
+<pre>
+<code class="language-dart">
+typedef BookFilter = bool Function(Book book);
+
+void main(){
+  List&lt;Book&gt; books = [
+    Book('book 1', 180),
+    Book('book 2', 300),
+    Book('book 3', 560),
+    Book('book 4', 360),
+    Book('book 5', 290),
+  ];
+  
+  List&lt;Book&gt; filteredBooks = filterBook(
+    books,
+    (book) =&gt; book.numOfPages &gt; 300,
+  );
+  
+  for(Book book in filteredBooks){
+    print(book.toString());
+  }
+}
+
+List&lt;Book&gt; filterBook(List&lt;Book&gt; books, BookFilter filter){
+  return books.where(filter).toList();
+}
+
+class Book {
+  int numOfPages = 0;
+  String name = '';
+  
+  Book(this.name, this.numOfPages);
+  
+  @override
+  String toString(){
+    return'Name: $name, Pages: $numOfPages';
+  }
+}
+</code>
+</pre>
+
+<h4>Palindrome String</h4>
+<pre>
+<code class="language-dart">
+void main(){
+  String str = &quot;racecar&quot;;
+  String strRev = str.split('').reversed.join();
+  if(str == strRev){
+    print('String palindrome');
+  }
+}
+</code>
+</pre>
+
+<h4>Find grater values from array</h4>
+<pre>
+<code class="language-dart">
+void main(){            
+    List&lt;int&gt; array = [11, 2, 33, 4, 22, 6, 56, 16, 40, 9];
+    print(abc(array));
+  }
+  
+  List&lt;int&gt; abc(List&lt;int&gt; array){
+    List&lt;int&gt; graterValues = [];
+    
+    for(int i = 0; i &lt; array.length; i++){
+      print('i: $i');
+      if(array[i] &gt; 20){
+        graterValues.add(array[i]);
+      }
+    }
+    
+    return graterValues;
+}
+</code>
+</pre>
+
+<h4>Differentiate between named parameters and positional parameters in dart</h4>
+<pre>
+<code class="language-dart">
+void main() {
+    doSomething1('kishan');
+    doSomething1('kishan', 'Hi');
+    
+    doSomething2('kishan');
+    doSomething2('kishan', greeting: 'Hi');
+  }
+  
+  // Positional Optional Parameter
+  doSomething1(String name, [String greeting = 'Hello']){
+    print(name);
+    print(greeting);
+    print('');
+  }
+  
+  // Named Optional Parameter
+  doSomething2(String name, {String greeting = 'Hello'}){
+    print(name);
+    print(greeting);
+    print('');
+}
+</code>
+</pre>
+
+</body>
+
+</html>
