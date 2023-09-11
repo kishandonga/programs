@@ -3,6 +3,10 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins" rel="stylesheet">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/default.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
 
@@ -12,6 +16,9 @@
     <script>hljs.highlightAll();</script>
 
     <style>
+      h4{
+        font-family: "Poppins";
+      }
       code{
         font-family: "Courier New", "Lucida Console", monospace;
         font-size: 16;
@@ -25,6 +32,29 @@
 <pre>
 <code class="language-dart">
 ...
+</code>
+</pre>
+
+<h4>Dart Isolate</h4>
+<pre>
+<code class="language-dart">
+import &apos;dart:isolate&apos;;
+
+void main() {
+  final receivePort = ReceivePort();
+  await Isolate.spawn(complexTask2, receivePort.sendPort);
+  receivePort.listen((total) {
+    debugPrint(&apos;Result 2: $total&apos;);
+  });
+}
+
+complexTask2(SendPort sendPort) {
+  var total = 0.0;
+  for (var i = 0; i &lt; 1000000000; i++) {
+    total += i;
+  }
+  sendPort.send(total);
+}
 </code>
 </pre>
 
