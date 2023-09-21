@@ -35,6 +35,48 @@
 </code>
 </pre>
 
+<h4>Bubble Sort in dart</h4>
+<pre>
+<code class="language-dart">
+void main() {
+  var list = [55, -95, 4, 64, -1, 255, 100];
+  print(&apos;Before:&apos;);
+  print(list);
+  bubbleSort(list);
+}
+
+bubbleSort(List&lt;int&gt; list){
+  for(int i = 0; i &lt; list.length; i++){
+    for(int j = 0; j &lt; list.length - i - 1; j++){
+      if(list[j] &gt; list[j+1]){
+        int temp = list[j];
+        list[j] = list[j+1];
+        list[j+1] = temp;
+      }
+    }
+  }
+  print(&apos;After:&apos;);
+  print(list);
+}
+</code>
+</pre>
+
+<h4>Records in dart</h4>
+<pre>
+<code class="language-dart">
+void main() {
+  var (firstName) = (firstName: &apos;kishan&apos;, lastName: &apos;donga&apos;);
+  print(firstName);
+  
+  var (values) = [1, 2, 3];
+  print(values);
+  
+  var [first] = [1, 2, 3];
+  print(first);
+}
+</code>
+</pre>
+
 <h4>Dart Isolate</h4>
 <pre>
 <code class="language-dart">
