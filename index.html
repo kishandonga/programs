@@ -35,6 +35,25 @@
 </code>
 </pre>
 
+<h4>Factorial</h4>
+<pre>
+<code class="language-dart">
+void main() {
+  print(factorial(5));
+}
+
+int factorial(int n) {
+  if (n == 1 || n == 0) return 1;
+
+  return n * factorial(n - 1);
+}
+
+Output:
+125
+
+</code>
+</pre>
+
 <h4>mixin</h4>
 <pre>
 <code class="language-dart">
@@ -74,7 +93,7 @@ PythonCode
 </pre>
 
 
-<h4>Fibonacci series</h4>
+<h4>Fibonacci series 1</h4>
 <pre>
 <code class="language-dart">
 
@@ -89,6 +108,30 @@ int fibonacci(int n) {
     return n;
   }
   return fibonacci(n - 1) + fibonacci(n - 2);
+}
+
+Output:
+
+0 1 1 2 3 5 8 13 21 34
+</code>
+</pre>
+
+
+
+<h4>Fibonacci series 2</h4>
+<pre>
+<code class="language-dart">
+void main() {
+  int n1 = 0, n2 = 1, n3;
+
+  print(n1);
+  print(n2);
+  for (int i = 2; i &lt; 10; i++) {
+    n3 = n1 + n2;
+    print(n3);
+    n1 = n2;
+    n2 = n3;
+  }
 }
 
 Output:
