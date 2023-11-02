@@ -35,6 +35,113 @@
 </code>
 </pre>
 
+<h4>mixin</h4>
+<pre>
+<code class="language-dart">
+abstract class Coder {
+  void writeCode() {
+    print(&apos;Code&apos;);
+  }
+}
+
+class Developer with JavaCoder, PythonCoder, DartCode {
+}
+
+mixin JavaCoder {
+  void writeCode() {
+    print(&apos;JavaCode&apos;);
+  }
+}
+
+mixin DartCode implements Coder{
+
+}
+
+mixin PythonCoder {
+  void writeCode() {
+    print(&apos;PythonCode&apos;);
+  }
+}
+
+void main() {
+  Developer().writeCode();
+}  
+
+Output:
+PythonCode
+
+</code>
+</pre>
+
+
+<h4>Fibonacci series</h4>
+<pre>
+<code class="language-dart">
+
+void main() {
+  for (int i = 0; i &lt; 10; i++) {
+    print(fibonacci(i));
+  }
+}
+
+int fibonacci(int n) {
+  if (n == 0 || n == 1) {
+    return n;
+  }
+  return fibonacci(n - 1) + fibonacci(n - 2);
+}
+
+Output:
+
+0 1 1 2 3 5 8 13 21 34
+</code>
+</pre>
+
+
+<h4>Singleton Pattern</h4>
+<pre>
+<code class="language-dart">
+//Implementation (Eager Loading)
+class Singleton1 {
+  static final Singleton1 _instance = Singleton1._();
+  Singleton1._();
+  static Singleton1 get instance =&gt; _instance;
+}
+
+//Implementation (Lazy Loading)
+class Singleton2 {
+  static Singleton2? _instance;
+  Singleton2._();
+  static Singleton2 get instance =&gt; _instance ??= Singleton2._();
+}
+
+//Implementation (Factory Contractor)
+class Singleton3 {
+  static Singleton3? _instance;
+  Singleton3._();
+  factory Singleton3() =&gt; _instance ??= Singleton3._();
+}
+
+void main() {
+  var result = Singleton1.instance.hashCode == Singleton1.instance.hashCode;
+  print(&apos;Singleton1 Is Same Singleton instance: $result&apos;);
+  
+  result = Singleton2.instance.hashCode == Singleton2.instance.hashCode;
+  print(&apos;Singleton2 Is Same Singleton instance: $result&apos;);
+  
+  result = Singleton3().hashCode == Singleton3().hashCode;
+  print(&apos;Singleton2 Is Same Singleton instance: $result&apos;);
+}
+
+Output:
+
+Singleton1 Is Same Singleton instance: true
+Singleton2 Is Same Singleton instance: true
+Singleton2 Is Same Singleton instance: true
+</code>
+</pre>
+
+
 <h4>Bubble Sort in dart</h4>
 <pre>
 <code class="language-dart">
