@@ -38,6 +38,28 @@
 <h4>Factorial</h4>
 <pre>
 <code class="language-dart">
+void main(){
+  print(factorial(5));
+}
+
+int factorial(int n) {
+  if (n == 1 || n == 0) return 1;
+
+  int fact = n;
+  while(n &gt; 1){
+    n--;
+    fact = fact * n;
+  }
+  
+  return fact;
+}
+
+Output:
+
+120
+
+</code>
+<code class="language-dart">
 void main() {
   print(factorial(5));
 }
@@ -49,7 +71,7 @@ int factorial(int n) {
 }
 
 Output:
-125
+120
 
 </code>
 </pre>
@@ -93,32 +115,7 @@ PythonCode
 </pre>
 
 
-<h4>Fibonacci series 1</h4>
-<pre>
-<code class="language-dart">
-
-void main() {
-  for (int i = 0; i &lt; 10; i++) {
-    print(fibonacci(i));
-  }
-}
-
-int fibonacci(int n) {
-  if (n == 0 || n == 1) {
-    return n;
-  }
-  return fibonacci(n - 1) + fibonacci(n - 2);
-}
-
-Output:
-
-0 1 1 2 3 5 8 13 21 34
-</code>
-</pre>
-
-
-
-<h4>Fibonacci series 2</h4>
+<h4>Fibonacci</h4>
 <pre>
 <code class="language-dart">
 void main() {
@@ -132,6 +129,25 @@ void main() {
     n1 = n2;
     n2 = n3;
   }
+}
+
+Output:
+
+0 1 1 2 3 5 8 13 21 34
+</code>
+<code class="language-dart">
+
+void main() {
+  for (int i = 0; i &lt; 10; i++) {
+    print(fibonacci(i));
+  }
+}
+
+int fibonacci(int n) {
+  if (n == 0 || n == 1) {
+    return n;
+  }
+  return fibonacci(n - 1) + fibonacci(n - 2);
 }
 
 Output:
@@ -185,7 +201,7 @@ Singleton2 Is Same Singleton instance: true
 </pre>
 
 
-<h4>Bubble Sort in dart</h4>
+<h4>Bubble Sort</h4>
 <pre>
 <code class="language-dart">
 void main() {
@@ -250,8 +266,30 @@ complexTask2(SendPort sendPort) {
 </code>
 </pre>
 
-<h4>Count the occurrences of a character in a string: Write a function that takes a string and a character as input and returns the number of times the character appears in the string. For example, if the input is "hello", "l" the output should be 2.</h4>
+<h4>Count the occurrences of a character in a string: Write a function that takes a string and a character as input and returns the number of times the character appears in the string.<br> For example, if the input is "hello", "l" the output should be 2.</h4>
 <pre>
+<code class="language-dart">
+void main() {
+  print(howManyTimesCharacterAppears(&apos;hello&apos;, &apos;l&apos;));
+}
+
+int howManyTimesCharacterAppears(String input, String char) {
+  int count = 0;
+  for (var i = 0; i &lt; input.length; i++) {
+    if (input[i] == char) {
+      count++;
+    }
+  }
+  
+  return count;
+}
+
+Output:
+
+2
+
+</code>
+
 <code class="language-dart">
 void main(){
   String input = &apos;hello&apos;;
@@ -271,7 +309,7 @@ Output:
 </code>
 </pre>
 
-<h4>Check for Prime Number: Write a function that takes a number as input and checks if it is a prime number. A prime number is a number that is only divisible by 1 and itself. For example, if the input is 7, the output should be true.</h4>
+<h4>Check for Prime Number: Write a function that takes a number as input and checks if it is a prime number. A prime number is a number that is only divisible by 1 and itself.<br> For example, if the input is 7, the output should be true.</h4>
 <pre>
 <code class="language-dart">
 import &apos;dart:math&apos;;
@@ -305,8 +343,40 @@ Output:
 </code>
 </pre>
 
-<h4>Find the longest word: Write a function that takes a sentence as input and returns the longest word in the sentence. For example, if the input is "The quick brown fox jumps over the lazy dog", the output should be "jumps".</h4>
+<h4>Find the longest word: Write a function that takes a sentence as input and returns the longest word in the sentence.<br> For example, if the input is "The quick brown fox jumps over the lazy dog", the output should be "jumps".</h4>
 <pre>
+
+<code class="language-dart">
+void main() {
+  print(findLongestWord(&apos;The quick brown fox jumps over the lazy dog&apos;));
+}
+
+findLongestWord(String input) {
+  int length = 0;
+  int tempLength = 0;
+  int index = 0;
+
+  for (var i = 0; i &lt; input.length; i++) {
+    if (input[i] != &apos; &apos;) {
+      tempLength++;
+    } else {
+      if (tempLength &gt;= length) {
+        length = tempLength;
+        index = i - length;
+      }
+      tempLength = 0;
+    }
+  }
+
+   return input.substring(index, index + length);
+}
+
+Output:
+
+jumps
+
+</code>
+
 <code class="language-dart">
 void main() {
   String sentence = &apos;The quick brown fox jumps over the lazy dog&apos;;
@@ -328,6 +398,47 @@ jumps
 
 <h4>Check for Anagrams: Write a function that takes two strings as input and checks if they are anagrams. Anagrams are two words or phrases that use the same letters in a different order. For example, if the inputs are "listen" and "silent", the output should be true.</h4>
 <pre>
+
+<code class="language-dart">
+void main() {
+  print(&apos;Is `listen` and `silent` are anagram? : ${isAnagram(&apos;listen&apos;, &apos;silent&apos;)}&apos;);
+  print(&apos;Is `compute` and `desktop` are anagram? : ${isAnagram(&apos;compute&apos;, &apos;desktop&apos;)}&apos;);
+}
+
+isAnagram(String first, String second) {
+  if (first.length != second.length) {
+    return false;
+  }
+  
+  first = bubbleSort(first);
+  second = bubbleSort(second);
+  
+  return first == second;
+}
+
+String bubbleSort(String input) {
+  var array = List&lt;int&gt;.from(input.codeUnits);
+
+  for (var i = 0; i &lt; array.length; i++) {
+    for (var j = 0; j &lt; array.length - i - 1; j++) {
+      if (array[j] &gt; array[j + 1]) {
+        final temp = array[j];
+        array[j] = array[j + 1];
+        array[j + 1] = temp;
+      }
+    }
+  }
+
+  return String.fromCharCodes(array);
+}
+
+Output:
+
+Is `listen` and `silent` are anagram? : true
+Is `compute` and `desktop` are anagram? : false
+
+</code>
+
 <code class="language-dart">
 void main() {
   print(&apos;Is `listen` and `silent` are anagram? : ${isAnagram(&apos;listen&apos;, &apos;silent&apos;)}&apos;);
@@ -359,7 +470,35 @@ Is `compute` and `desktop` are anagram? : false
 </code>
 </pre>
 
-<h4>Remove duplicates from an array: Write a function that takes an array as input and returns a new array with duplicate elements removed. For example, if the input is [1, 2, 2, 3, 4, 4, 5], the output should be [1, 2, 3, 4, 5].</h4>
+<h4>Remove duplicates from <i><u>unsorted</u></i> an array: Write a function that takes an array as input and returns a new array with duplicate elements removed. For example,<br> if the input is [1, 4, 2, 3, 2, 4, 5], the output should be [1, 4, 2, 3, 5].</h4>
+
+<pre>
+<code class="language-dart">
+void main(){
+  final array = [1, 4, 2, 3, 2, 4, 5];
+  print(removeDuplicates(array));
+}
+
+List&lt;int&gt; removeDuplicates(List&lt;int&gt; array) {
+   List&lt;int&gt; output = [];
+  
+  for(var i = 0; i &lt; array.length; i++){
+    final value = array[i];
+    if(!output.contains(value)){
+      output.add(value);
+    }
+  }
+  
+  return output;
+}
+
+Output:
+
+[1, 4, 2, 3, 5]
+</code>
+</pre>
+
+<h4>Remove duplicates from <i><u>sorted</u></i> an array: Write a function that takes an array as input and returns a new array with duplicate elements removed. For example,<br> if the input is [1, 2, 2, 3, 4, 4, 5], the output should be [1, 2, 3, 4, 5].</h4>
 
 <pre>
 <code class="language-dart">
@@ -384,25 +523,30 @@ void main() {
 List&lt;int&gt; removeDuplicates(List&lt;int&gt; arr) {
   int length = arr.length;
   List&lt;int&gt; output = [];
+
   if (length == 0 || length == 1) {
     return arr;
   }
 
-  // Doing same as done in Method 1
-  // Just maintaining another updated index i.e. j
   for (int i = 0; i &lt; length - 1; i++) {
     if (arr[i] != arr[i + 1]) {
       output.add(arr[i]);
     }
   }
+
   output.add(arr[length - 1]);
   
   return output;
 }
+
+Output:
+
+[1, 2, 3, 4, 5]
+
 </code>
 </pre>
 
-<h4>Find the missing number: Given an array of numbers from 1 to N, where one number is missing, write a function to find the missing number. For example, if the input is [1, 2, 4, 5, 6], the output should be 3.</h4>
+<h4>Find the missing number: Given an array of numbers from 1 to N, where one number is missing, write a function to find the missing number. For example,<br> if the input is [1, 2, 4, 5, 6], the output should be 3.</h4>
 <pre>
 <code class="language-dart">
 import &quot;dart:math&quot;;
@@ -440,34 +584,70 @@ main() {
 </code>
 </pre>
 
-<h4>Check is palindrome number or not</h4>
+<h4>Palindrome number</h4>
 <pre>
 <code class="language-dart">
 void main() {
-  isPalindromeNum(54545);
+  int number = 54545;
+  isPalindromeNum(number);
 }
 
-isPalindromeNum(int number) {
-  int reminder, sum = 0, temp;
-  temp = number;
+void isPalindromeNum(int number) {
+  int reverse = 0, temp = number;
 
   // a loop to reverse a number
+  while (temp &gt; 0) {
+    int reminder = temp % 10; //get remainder
+    reverse = (reverse * 10) + reminder;
+    temp = temp ~/ 10;
+  }
+
+  if (number == reverse) {
+    print(&apos;Given number is palindrome&apos;);
+  } else {
+    print(&apos;Given number is not palindrome&apos;);
+  }
+}
+
+Output:
+
+Given number is palindrome
+
+</code>
+
+<code class="language-dart">
+void main() {
+  int number = 54545;
+  
+  int reverse = reversNumber(number);
+  
+  if (number == reverse) {
+    print(&apos;Given number is palindrome&apos;);
+  } else {
+    print(&apos;Given number is not palindrome&apos;);
+  }
+}
+
+int reversNumber(int number) {
+  int reverse = 0;
+
   while (number &gt; 0) {
-    reminder = number % 10; //get remainder
-    sum = (sum * 10) + reminder;
+    reverse = reverse * 10 + number % 10;
     number = number ~/ 10;
   }
 
-  if (sum == temp) {
-    print(&apos;Its A Palindrome number&apos;);
-  } else {
-    print(&apos;Its A Not Palindrome number&apos;);
-  }
+  return reverse;
 }
+
+Output:
+
+Given number is palindrome
+
 </code>
+
 </pre>
 
-<h4>Takes an array of numbers as input and returns the largest number dart</h4>
+<h4>Find largest number from array</h4>
 <pre>
 <code class="language-dart">
 import &apos;dart:math&apos;;
@@ -475,24 +655,24 @@ import &apos;dart:math&apos;;
 void main(){
   var arrayInt = [3, 8, 2, 10, 5];
   
-  print(usingFor(arrayInt));
+  print(usingAlgo(arrayInt));
   print(usingSort1(arrayInt));
   print(usingSort2(arrayInt));
   print(usingReduce(arrayInt));
   print(usingFold(arrayInt));
 }
 
-int usingFor(List&lt;int&gt; arrayInt){
-  var largestValue = arrayInt[0];
+int usingAlgo(List&lt;int&gt; arrayInt){
+  var max = arrayInt[0];
   
   for (var i = 0; i &lt; arrayInt.length; i++) {
       
-    if (arrayInt[i] &gt; largestValue) {
-      largestValue = arrayInt[i];
+    if (arrayInt[i] &gt; max) {
+      max = arrayInt[i];
     }
   }
   
-  return largestValue;
+  return max;
 }
 
 int usingSort1(List&lt;int&gt; arrayInt){
@@ -512,25 +692,39 @@ int usingReduce(List&lt;int&gt; arrayInt){
 int usingFold(List&lt;int&gt; arrayInt){
   return arrayInt.fold(arrayInt[0], max);
 }
+
+Output:
+
+10
+
 </code>
 </pre>
 
-<h4>String as input and returns the string in reverse order in dart</h4>
+<h4>String in reverse order</h4>
 <pre>
 <code class="language-dart">
 void main() {
   var value = &apos;Hello, World!&apos;;
 
-  print(usingAlgo(value));
+  print(usingAlgo1(value));
+  print(usingAlgo2(value));
   print(usingSplit(value));
   print(usingRunes(value));
   print(usingCodeUnits(value));
 }
 
-String usingAlgo(String input) {
+String usingAlgo1(String input) {
   String reverseStr = &apos;&apos;;
   for (int i = 0; i &lt; input.length; i++) {
     reverseStr = input[i] + reverseStr;
+  }
+  return reverseStr;
+}
+
+String usingAlgo2(String input) {
+  String reverseStr = &apos;&apos;;
+  for (int i = input.length - 1; i &gt;= 0; i--) {
+    reverseStr = reverseStr + input[i];
   }
   return reverseStr;
 }
@@ -549,6 +743,11 @@ String usingRunes(String input) {
 String usingCodeUnits(String input) {
   return String.fromCharCodes(input.codeUnits.reversed);
 }
+
+Output:
+
+!dlroW ,olleH
+
 </code>
 </pre>
 
@@ -601,36 +800,73 @@ void main(){
   String str = &quot;racecar&quot;;
   String strRev = str.split('').reversed.join();
   if(str == strRev){
-    print('String palindrome');
+    print('String is palindrome');
+  } else {
+    print('String is not palindrome');
   }
 }
-</code>
-</pre>
 
-<h4>Find grater values from array</h4>
-<pre>
+Output:
+
+String is palindrome
+
+</code>
 <code class="language-dart">
-void main(){            
-    List&lt;int&gt; array = [11, 2, 33, 4, 22, 6, 56, 16, 40, 9];
-    print(abc(array));
+void main() {
+  
+  String value = &apos;racecar&apos;;
+  if(isPalindrome(value)){
+    print(&apos;Given string is palindrome&apos;);
+  }else{
+    print(&apos;Given string is not palindrome&apos;);
+  }
+}
+
+bool isPalindrome(String value){
+  String resValue = &apos;&apos;;
+  
+  for(int i = value.length - 1; i &gt;= 0; i--){
+    resValue += value[i];
   }
   
-  List&lt;int&gt; abc(List&lt;int&gt; array){
-    List&lt;int&gt; graterValues = [];
-    
-    for(int i = 0; i &lt; array.length; i++){
-      print('i: $i');
-      if(array[i] &gt; 20){
-        graterValues.add(array[i]);
-      }
-    }
-    
-    return graterValues;
+  return value == resValue;
 }
+
+Output:
+
+Given string is palindrome
+
 </code>
 </pre>
 
-<h4>Differentiate between named parameters and positional parameters in dart</h4>
+<h4>Find all 20 > values from array</h4>
+<pre>
+<code class="language-dart">
+void main() {
+  List&lt;int&gt; array = [11, 2, 33, 4, 22, 6, 56, 16, 40, 9];
+  print(findGraterValues(20, array));
+}
+
+List&lt;int&gt; findGraterValues(int value, List&lt;int&gt; array) {
+  List&lt;int&gt; graterValues = [];
+
+  for (int i = 0; i &lt; array.length; i++) {
+    if (array[i] &gt; value) {
+      graterValues.add(array[i]);
+    }
+  }
+
+  return graterValues;
+}
+
+Output:
+
+[33, 22, 56, 40]
+
+</code>
+</pre>
+
+<h4>Named parameters and positional parameters</h4>
 <pre>
 <code class="language-dart">
 void main() {
@@ -654,6 +890,21 @@ void main() {
     print(greeting);
     print('');
 }
+
+Output:
+
+kishan
+Hello
+
+kishan
+Hi
+
+kishan
+Hello
+
+kishan
+Hi
+
 </code>
 </pre>
 
