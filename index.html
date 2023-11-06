@@ -35,6 +35,129 @@
 </code>
 </pre>
 
+<h4>Armstrong number</h4>
+<pre>
+<code class="language-dart">
+//153 = 1*1*1 + 5*5*5 + 3*3*3 = 1 + 125 + 27 = 153
+//1634 = 1*1*1*1 + 6*6*6*6 + 3*3*3*3 + 4*4*4*4 = 1 + 1296 + 81 + 256 = 1634
+
+void main() {
+  int c = 0, a, temp;
+  int n = 153;
+
+  temp = n;
+  while (n &gt; 0) {
+    a = n % 10; // 3, 5, 1
+    n = n ~/ 10; // 15, 1, 0
+    c = c + (a * a * a); // 0+27, 27+125, 152 + 1
+  }
+
+  if (temp == c) {
+    print(&apos;Armstrong number&apos;);
+  } else {
+    print(&apos;Not armstrong number&apos;);
+  }
+}
+</code>
+</pre>
+
+<h4>Second largest number in the array</h4>
+<pre>
+<code class="language-dart">
+void main() {
+  List&lt;int&gt; arr = [14, 46, 47, 52, 86, 36, 94, 89, 100];
+  int largest = 0;
+  int secondLargest = 0;
+
+  for (int i = 0; i &lt; arr.length; i++) {
+    if (arr[i] &gt; largest) { 
+      secondLargest = largest; // 0, 14, 46, 47, 52, 86, 94
+      largest = arr[i]; // 14, 46, 47, 52, 86, 94, 100
+    } else if (arr[i] &gt; secondLargest) {
+      secondLargest = arr[i]; // 89
+    }
+  }
+  
+  print(secondLargest); // 94
+  print(largest); // 100
+}
+</code>
+</pre>
+
+<h4>Swap two number without third variable</h4>
+<pre>
+<code class="language-dart">
+void main(){
+  int x = 5, y = 6;
+  
+  print(&apos;Before&apos;);
+  print(&apos;x: $x&apos;);
+  print(&apos;Y: $y&apos;);
+  
+  x = x + y; // 11
+  y = x - y; // 11 - 6 = 5
+  x = x - y; // 11 - 5 = 6 
+  
+  print(&apos;\nAfter&apos;);
+  print(&apos;x: $x&apos;);
+  print(&apos;Y: $y&apos;);
+}
+
+Output:
+
+Before
+x: 5
+Y: 6
+
+After
+x: 6
+Y: 5
+
+</code>
+</pre>
+
+<h4>Binary Search</h4>
+<pre>
+<code class="language-dart">
+void main() {
+  int index = binarySearch([2, 3, 4, 10, 40], 10);
+
+  if (index == -1) {
+    print(&apos;Element is not present in array&apos;);
+  } else {
+    print(&apos;Element is present at $index index&apos;);
+  }
+}
+
+int binarySearch(List&lt;int&gt; arr, int x) {
+  int low = 0, high = arr.length - 1;
+  while (low &lt;= high) {
+    int mid = (low + (high - low) / 2).toInt();
+
+    // Check if x is present at mid
+    if (arr[mid] == x) return mid;
+
+    if (arr[mid] &lt; x) {
+      // If x greater, ignore left half
+      low = mid + 1;
+    } else {
+      // If x is smaller, ignore right half
+      high = mid - 1;
+    }
+  }
+
+  // If we reach here, then element was
+  // not present
+  return -1;
+}
+
+Output:
+
+Element is present at 3 index
+
+</code>
+</pre>
+
 <h4>Factorial</h4>
 <pre>
 <code class="language-dart">
@@ -119,21 +242,20 @@ PythonCode
 <pre>
 <code class="language-dart">
 void main() {
-  int n1 = 0, n2 = 1, n3;
+  int a = 0, b = 0, c = 1;
 
-  print(n1);
-  print(n2);
-  for (int i = 2; i &lt; 10; i++) {
-    n3 = n1 + n2;
-    print(n3);
-    n1 = n2;
-    n2 = n3;
+  for (int i = 2; i &lt; 12; i++) {
+    a = b;
+    b = c;
+    c = a + b;
+    print(a);
   }
 }
 
 Output:
 
 0 1 1 2 3 5 8 13 21 34
+
 </code>
 <code class="language-dart">
 
