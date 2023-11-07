@@ -35,6 +35,48 @@
 </code>
 </pre>
 
+<h4>Leap Year</h4>
+<pre>
+<code class="language-dart">
+void main() {
+  int year = 2012; //1900;
+  bool leap = false;
+
+  // if the year is divided by 4
+  if (year % 4 == 0) {
+
+    // if the year is century
+    if (year % 100 == 0) {
+      
+      // if year is divided by 400
+      // then it is a leap year
+      if (year % 400 == 0) {
+        leap = true;
+      } else {
+        leap = false;
+      }
+    } else {
+      // if the year is not century
+      leap = true;
+    }
+  } else {
+    leap = false;
+  }
+
+  if (leap) {
+    print(&apos;$year is a leap year.&apos;);
+  } else {
+    print(&apos;$year is not a leap year.&apos;);
+  }
+}
+
+Output:
+
+2012 is a leap year.
+
+</code>
+</pre>
+
 <h4>Armstrong number</h4>
 <pre>
 <code class="language-dart">
@@ -452,26 +494,27 @@ Output:
 import &apos;dart:math&apos;;
 
 void main() {
-  int num = 7;
+  int number = 7;
 
-  bool isPrime = true;
-
-  if (num &lt;= 1) {
-    isPrime = false;
+  if (isPrime(number)) {
+    print(&apos;$number is a prime number.&apos;);
   } else {
-    for (int i = 2; i &lt;= sqrt(num); i++) {
-      if (num % i == 0) {
-        isPrime = false;
-        break;
-      }
+    print(&apos;$number is not a prime number.&apos;);
+  }
+}
+
+bool isPrime(int number) {
+  if (number &lt;= 1) {
+    return false;
+  }
+
+  for (int i = 2; i &lt;= sqrt(number); i++) {
+    if (number % i == 0) {
+      return false;
     }
   }
 
-  if (isPrime) {
-    print(&apos;$num is a prime number.&apos;);
-  } else {
-    print(&apos;$num is not a prime number.&apos;);
-  }
+  return true;
 }
 
 Output:
