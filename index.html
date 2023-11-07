@@ -244,7 +244,7 @@ PythonCode
 void main() {
   int a = 0, b = 0, c = 1;
 
-  for (int i = 2; i &lt; 12; i++) {
+  for (int i = 0; i &lt; 10; i++) {
     a = b;
     b = c;
     c = a + b;
@@ -346,6 +346,14 @@ bubbleSort(List&lt;int&gt; list){
   print(&apos;After:&apos;);
   print(list);
 }
+
+Output:
+
+Before:
+[55, -95, 4, 64, -1, 255, 100]
+After:
+[-95, -1, 4, 55, 64, 100, 255]
+
 </code>
 </pre>
 
@@ -353,8 +361,8 @@ bubbleSort(List&lt;int&gt; list){
 <pre>
 <code class="language-dart">
 void main() {
-  var (firstName) = (firstName: &apos;kishan&apos;, lastName: &apos;donga&apos;);
-  print(firstName);
+  var (str) = (firstName: &apos;kishan&apos;, lastName: &apos;donga&apos;);
+  print(str);
   
   var (values) = [1, 2, 3];
   print(values);
@@ -362,6 +370,13 @@ void main() {
   var [first] = [1, 2, 3];
   print(first);
 }
+
+Output:
+
+(firstName: kishan, lastName: donga)
+[1, 2, 3]
+Uncaught Error: Bad state: Pattern matching error
+
 </code>
 </pre>
 
@@ -688,7 +703,7 @@ void main() {
 <code class="language-dart">
 fizzBuzz(int turn) {
   if (turn % 3 == 0 &amp;&amp; turn % 5 == 0){
-    return &apos;izzBuzz&apos;;    
+    return &apos;FizzBuzz&apos;;    
   } else if (turn % 3 == 0) {
     return &apos;Fizz&apos;;
   } else if (turn % 5 == 0) {
